@@ -1,0 +1,147 @@
+<p id="notice"><%= notice %></p>
+<div class="main_container">
+<div class="board_container">
+<%= render 'boards/edit_tile', :board => @game_board %>
+
+	
+</div>
+	<div class="scoreContainer" id="potential_score">
+		<div>Word: <span id="potential_word"></span></div>
+		<div>Potential Score: <span id="total_score"></span></div>
+		<div>Word component: <span id="word_score"></span></div>
+		<div>Panda component: <span id="panda_score"></span></div>
+	</div>
+
+<div class="word_container">
+<select multiple size = "25" STYLE="width: 130px">
+
+<% @orderedKeys.each do |word| %>
+<% rec = @recsByWord[word] %>
+<option value="word-<%= word %>" class="select-<%= word%>"><%= word %>
+<% end %>
+
+</select>
+<select multiple size = "25" STYLE="width: 230px" id="suggestions">
+  <!--<option value="d">-->
+  	<% counter = 0 %>
+	<% @orderedKeys.each do |word| %>
+		<% rec = @recsByWord[word] %>
+		<% rec["recs"].each_with_index do |r,i| %>
+			<% counter += 1%>
+  			<option class='rec <%= r %>' value='<%= r %>' id='<%= "rec-word-"+counter.to_s %>'>(<%= i+1 %>) <%= word %>
+		<%end%>
+	<% end %>
+
+</select>
+
+
+
+</div>
+
+	<div class="scoreContainer" id="selected_rec">
+		<%= form_tag(take_turn_path(:id =>@game_board.id, :game_id => @game.id)) do %>
+			<div>Word: <span id="selected_word"></span></div>
+			<div>Potential Score: <span id="selected_total_score"></span></div>
+			<div>Word component: <span id="selected_word_score"></span></div>
+			<div>Panda component: <span id="selected_panda_score"></span></div>
+			<input type="hidden" name="selected_turn" value="foobar" id="selected_turn">
+			<%= submit_tag "Play Word" %>
+		<% end %>
+	</div>
+
+</div>
+<script>
+
+  jQuery.noConflict();
+  jQuery(document).ready(function(){
+		jQuery("[id |= 'rec-word']").hover( function(event) {
+				HighlightWord(jQuery(this).val());
+				
+				jQuery('#potential_score').css("top",jQuery(this).offset().top + 20);
+				jQuery('#potential_score').css("left",jQuery(this).offset().left);
+				jQuery("#selected_turn").attr("value",jQuery(this).val());
+				jQuery('#potential_score').show();
+			}, 
+			function(event){
+				UnhighlightWord(jQuery(this).val());
+				jQuery('#potential_score').hide();
+			}
+		);
+   
+ });
+ function HighlightWord(data) {
+ 	var cells = data.split("-");
+ 	
+ 	var total_score = cells.pop();
+ 	jQuery("#total_score").text(total_score);
+ 	 var w = cells.pop();
+ 	jQuery("#potential_word").text(w);
+	jQuery('[id |= "tile"]').addClass("mutedTile");
+
+ 	cells.forEach(function(item) {
+ 		var tile_id = "#tile-" + item;
+ 		jQuery(tile_id).addClass("highlightTile");
+ 		jQuery(tile_id).removeClass("mutedTile");
+ 		jQuery(tile_id).removeClass("letterTile");
+ 	});
+ 	
+ }
+  function HighlightSelectWord(data) {
+  
+ 	var cells = data.split("-");	
+ 	var total_score = cells.pop();
+ 	jQuery("#selected_rec").show();
+ 	jQuery("#selected_total_score").text(total_score);
+ 	 var w = cells.pop();
+ 	jQuery("#selected_word").text(w);
+	jQuery('[id |= "tile"]').removeClass("selectedTile");
+
+ 	cells.forEach(function(item) {
+ 		var tile_id = "#tile-" + item;
+ 		jQuery(tile_id).addClass("selectedTile");
+ 		jQuery(tile_id).removeClass("letterTile");
+ 	});
+ 	
+ }
+ 
+  function UnhighlightWord(data) {
+ 	var cells = data.split("-");
+ 	
+ 	var total_score = cells.pop();
+ 	var w = cells.pop();
+ 	jQuery("#total_score").text("");
+ 	jQuery("#potential_word").text("")
+ 	jQuery('[id |= "tile"]').removeClass("mutedTile");
+ 
+ 	cells.forEach(function(item) {
+ 		var tile_id = "#tile-" + item;
+ 		jQuery(tile_id).removeClass("highlightTile");
+ 		jQuery(tile_id).addClass("letterTile");
+ 	});
+ 	
+ }
+
+   
+   jQuery('[class ^= "select-"]').click(function(event) {
+   		
+   		var className = "." + jQuery(this).val();
+   		var word = jQuery(this).text();
+   		//$("#container").text(className);
+   		
+   		jQuery(jQuery(className)).each(function(i) {
+			var someId = jQuery(this).val();
+			someId = "." + someId;
+			//jQuery("#suggestions").append("<option class='rec "+someId+"' value='"+someId+"'>(" +(i+1) +") "+word);
+			jQuery(someId).addClass("selected_rec");
+
+   		   	});
+
+   });
+    
+	jQuery('[id |= "rec-word"]').click(function(event) {
+		var className = jQuery(this).val();
+		HighlightSelectWord(jQuery(this).val());
+		//alert(className);
+	});
+
+</script>

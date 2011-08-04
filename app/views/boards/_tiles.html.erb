@@ -1,0 +1,27 @@
+
+<%= form_tag(update_tile_path(:id => tile.attributes["board_id"], :game_id => tile.attributes["game_id"])) do %>
+    <% tile_id = "tile-" + tile.attributes["x"] + tile.attributes["y"] %>
+	<div class="tile" >
+	<%= hidden_field_tag(:x, tile.attributes["x"]) %>
+	<%= hidden_field_tag(:y, tile.attributes["y"]) %>
+	<div class="info">
+		<% if tile.attributes["state"] == "HIDDEN" %>
+			<div class="hiddenTile" id="<%= tile_id %>">&nbsp;</div>
+		<% elsif  tile.attributes["state"] == "PANDA"%>
+			<div class="pandaTile" id="<%= tile_id %>">&nbsp;</div>
+		<% elsif  tile.attributes["state"] == "OPEN"%>
+			<div class="letterTile" id="<%= tile_id %>"><%= tile.attributes["letter"] %><sub><%= tile.attributes["score"] %></sub></div>
+		<% end %>
+	</div>
+	<div class="hidden_form">
+		<div class="formHeader">Edit tile</div>
+		<label>Letter: </label><%= text_field_tag(:letter,tile.attributes["letter"] , :size => 2) %>
+		<label>Score: </label><%= text_field_tag(:score,tile.attributes["score"] , :size => 2) %>
+		<label>State: </label><%= select_tag(:state, options_for_select([["HIDDEN", "HIDDEN"],["OPEN", "OPEN"],["DEAD", "DEAD"],["PANDA", "PANDA"]], tile.attributes["state"]) ) %>
+		<%= hidden_field_tag(:letterold, tile.attributes["letter"]) %>
+		<%= hidden_field_tag(:scoreold, tile.attributes["score"]) %>
+		<%= hidden_field_tag(:stateold, tile.attributes["state"]) %>
+	<%= submit_tag "Change" %>
+	</div>
+	</div>
+<% end %>

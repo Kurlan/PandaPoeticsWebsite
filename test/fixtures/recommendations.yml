@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  word: MyString
+  board: 
+  score: 
+  panda_score: 
+  rank: 
+  word_score: 
+  spots: MyString
+
+two:
+  word: MyString
+  board: 
+  score: 
+  panda_score: 
+  rank: 
+  word_score: 
+  spots: MyString

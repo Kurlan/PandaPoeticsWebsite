@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @game.name %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @game.title %>
+</p>
+
+<p>
+  <b>Current board:</b>
+  <%= @game.current_board %> / <%= @current_board.game_id %>
+  <%= render 'boards/edit_tile', :board => @current_board %>
+</p>
+
+<%= link_to 'Back', games_path %>
+<script>
+    jQuery(".tile").click(function(event){
+    	jQuery(".hidden_form").hide();
+    	jQuery(".info").show();
+     	jQuery(this).find("[class=hidden_form]").show();
+     	jQuery(this).find("[class=info]").hide();
+   });
+</script>

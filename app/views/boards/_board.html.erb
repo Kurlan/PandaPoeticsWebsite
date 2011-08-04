@@ -1,0 +1,21 @@
+<p>
+  <b>Board:</b>
+  <div class="board">
+  <table>
+
+  <% (0..8).each do |x| %>
+  <tr>
+  	<% (0..8).each do |y| %>
+  		<td>
+  		<% tile = board.get_spot(x.to_s, y.to_s) %>
+  		<% puts "Here #{tile}" %>
+  		<% unless tile == nil %>
+  			<%= render 'boards/tiles', :tile => tile %>
+  		<% end %>
+  		</td>
+  	<% end %>
+  </tr>
+  <% end  %>
+  </table>
+  </div>
+</p>

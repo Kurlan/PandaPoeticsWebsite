@@ -1,0 +1,31 @@
+
+  <div class="board">
+  <table padding="0" margin="0">
+
+  <% (0..8).each do |x| %>
+  <tr>
+  	<% (0..8).each do |y| %>
+  		<td>
+  		<% tile = board.get_spot(x.to_s, y.to_s) %>
+  		
+  		<%= render 'boards/tiles', :tile => tile %>
+  		
+  		
+  		</td>
+  	<% end %>
+  </tr>
+  <% end  %>
+  </table>
+  <div class="control_container">
+  	<%= link_to 'Take Turn', get_recs_path(:id => board.id, :game_id => board.game_id)  %>
+  </div>
+  <div>
+  <% if board.get_played_words.empty? %>
+  	This is the first turn
+  <% else %>
+  	<% board.get_played_words.each do |turn, words| %>
+  		Turn <%=turn.to_i + 1%>:  <%=  words %><br/>
+  	<% end %>
+  <% end %>
+  </div>
+</div>

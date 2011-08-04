@@ -1,0 +1,9 @@
+<h1>Recommendation#edit</h1>
+<p>Find me in app/views/recommendation/edit.html.erb</p>
+<%= form_for(:recommendation, @recommendation, :url => { :action => "update" }, :html => { :method => "put"}) do |f|%>
+  <div class="field">
+    <%= f.label :word %><br />
+    <%= f.text_field :word %>
+  </div>
+
+<% end %>

@@ -1,0 +1,184 @@
+body { background-color: #fff; color: #333; }
+
+body, p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size:   13px;
+  line-height: 18px;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a { color: #000; }
+a:visited { color: #666; }
+a:hover { color: #fff; background-color:#000; }
+
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+#notice {
+  color: green;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+.highlightTile {
+	width: 30px; 
+	height: 30px; 
+	background: yellow;
+	-moz-border-radius: .5em .5em .5em .5em;
+	border-radius: .5em .5em .5em .5em;
+	border: 1px solid rgb(0, 0, 0);
+
+	}
+
+.mutedTile {
+		opacity: 0.2;
+}
+
+.letterTile {
+	width: 30px; 
+	height: 30px; 
+	background: #EEE;
+	-moz-border-radius: .5em .5em .5em .5em;
+	border-radius: .5em .5em .5em .5em;
+	border: 1px solid rgb(0, 0, 0);
+}
+
+.pandaTile {
+	width: 30px; 
+	height: 30px; 
+	background: #ccc;
+	-moz-border-radius: .5em .5em .5em .5em;
+	border-radius: .5em .5em .5em .5em;
+	border: 1px solid rgb(0, 0, 0);
+	}
+	
+.hiddenTile {
+	width: 30px; 
+	height: 30px; 
+	background: #0c0;
+	-moz-border-radius: .5em .5em .5em .5em;
+	border-radius: .5em .5em .5em .5em;
+	border: 1px solid rgb(0, 0, 0);
+	}
+	
+.scoreContainer {
+	-moz-border-radius: .5em .5em .5em .5em;
+	border-radius: .5em .5em .5em .5em;
+	border: 2px solid rgb(0, 0, 0);
+	margin-left: 1em;
+	padding: 10px;
+	float: left;
+
+}
+
+#selected_rec {
+	display:none;
+}
+
+#potential_score {
+	display:none;
+	position:absolute;
+	background: orange;
+}
+
+
+.board_container {
+	float: left;
+}
+.word_container {
+	float: left;
+}
+
+.control_container {
+
+}
+
+.main_container {
+	float: left;
+	width: 1000px;
+	padding: 1em;
+	margin: 1em;
+}
+
+.hidden_form {
+	display:none;
+	position: absolute;
+	border: 2px solid rgb(0, 0, 0);
+	background: orange;
+	width: 125px;
+	height: 180px;
+	padding: 10px;
+	-moz-border-radius: 1em 1em 1em 1em;
+	border-radius: 1em 1em 1em 1em;
+}
+
+.formHeader {
+	font-size:   14px;
+	padding-bottom: 10px;	  
+}
+	
+.board {
+	-moz-border-radius: 1em 1em 1em 1em;
+	border-radius: 1em 1em 1em 1em;
+	border: 2px solid rgb(0, 0, 0);
+	width: 400px;
+	padding: 10px;
+	margin: 1em;
+}
+
+.selected_rec {
+	background: orange;
+}
+
+.selectedTile {
+	width: 30px; 
+	height: 30px; 
+	background: yellow;
+	-moz-border-radius: .5em .5em .5em .5em;
+	border-radius: .5em .5em .5em .5em;
+	border: 1px solid rgb(0, 0, 0);
+}
+
+select {
+	padding: .5em;
+	-moz-border-radius: .5em .5em .5em .5em;
+	border-radius: 1em 1em 1em 1em;
+	border: 2px solid rgb(0, 0, 0);
+	border-radius:10px;
+	margin: 1em;
+}
